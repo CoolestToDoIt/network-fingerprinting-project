@@ -49,6 +49,8 @@ How well does the classifier perform when **both** the application category and 
 
 ### A. ISCXVPN2016 — Primary Historical VPN Dataset
 
+This project builds on the prior work that showed encrypted traffic can be distinguished using time-related flow statistics, particularly for Tor traffic and VPN traffic characterization [1, 2].
+
 **Use for:** Normal vs VPN training/evaluation and application labels.
 
 Official page: <https://www.unb.ca/cic/datasets/vpn.html>
@@ -131,6 +133,12 @@ Useful properties:
 - Designed to support cross-session and early-flow classification.
 
 **Potential use:** add a modern VPN protocol / external modern dataset experiment. Keep this a stretch goal because the primary project is Normal/OpenVPN/Tor generalization.
+
+### References
+
+[1] Arash Habibi Lashkari, Gerard Draper-Gil, Mohammad Saiful Islam Mamun and Ali A. Ghorbani, "Characterization of Tor Traffic Using Time Based Features," In the proceeding of the 3rd International Conference on Information System Security and Privacy, SCITEPRESS, Porto, Portugal, 2017.
+
+[2] Gerard Drapper Gil, Arash Habibi Lashkari, Mohammad Mamun, Ali A. Ghorbani, "Characterization of Encrypted and VPN Traffic Using Time-Related Features," In Proceedings of the 2nd International Conference on Information Systems Security and Privacy (ICISSP 2016), pages 407-414, Rome, Italy.
 
 ---
 

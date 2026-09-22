@@ -24,6 +24,8 @@ This project is scoped for **one student in one college semester**.
 
 ### Required historical datasets
 
+The feature design and traffic characterization strategy in this project follows the established time-based encrypted-traffic approach used in prior VPN and Tor research. In particular, the use of flow timing and packet-based metadata is motivated by Lashkari et al. (2017), who characterized Tor traffic using time-based features, and Draper-Gil et al. (2016), who characterized encrypted and VPN traffic using time-related features [1, 2].
+
 **ISCXVPN2016**  
 Primary source for Normal and VPN traffic with application labels.  
 https://www.unb.ca/cic/datasets/vpn.html
@@ -59,6 +61,12 @@ Optional stretch class:
 - WireGuard
 
 WireGuard is not required for the minimum viable project.
+
+## 3.1 Prior Work and Related Studies
+
+[1] Arash Habibi Lashkari, Gerard Draper-Gil, Mohammad Saiful Islam Mamun and Ali A. Ghorbani, "Characterization of Tor Traffic Using Time Based Features," In the proceeding of the 3rd International Conference on Information System Security and Privacy, SCITEPRESS, Porto, Portugal, 2017.
+
+[2] Gerard Drapper Gil, Arash Habibi Lashkari, Mohammad Mamun, Ali A. Ghorbani, "Characterization of Encrypted and VPN Traffic Using Time-Related Features," In Proceedings of the 2nd International Conference on Information Systems Security and Privacy (ICISSP 2016), pages 407-414, Rome, Italy.
 
 ## 4. Methodology Rules
 

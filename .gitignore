@@ -1,0 +1,15 @@
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Local project data (do not commit raw datasets or generated artifacts)
+data/raw/
+data/interim/
+data/processed/
+
+# Optional local outputs
+results/
+models/
+*.log
