@@ -1,0 +1,1 @@
+session_id,pair_id,start_utc,end_utc,collection_day,traffic_class,application_category,application_version,os_version,device,vpn_provider,vpn_protocol,vpn_endpoint,capture_tool_version,physical_interface,workload,capture_path,sha256,packet_count,size_bytes,extractor_version,flow_timeout,notes

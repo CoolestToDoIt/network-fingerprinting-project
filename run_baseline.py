@@ -10,9 +10,20 @@ from network_fingerprinting.pipeline import run_baseline_experiment
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run the baseline VPN/Tor classification experiment.")
-    parser.add_argument("csv_path", type=str, help="Path to a CSV file containing flow-level traffic records.")
-    parser.add_argument("--output", type=str, default=None, help="Optional path to a JSON file for metrics output.")
+    parser = argparse.ArgumentParser(
+        description="Run the baseline VPN/Tor classification experiment."
+    )
+    parser.add_argument(
+        "csv_path",
+        type=str,
+        help="Path to a CSV file containing flow-level traffic records.",
+    )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default=None,
+        help="Optional path to a JSON file for metrics output.",
+    )
     args = parser.parse_args()
 
     data = pd.read_csv(args.csv_path)

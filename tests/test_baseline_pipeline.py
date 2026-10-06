@@ -9,7 +9,14 @@ def test_normalize_labels_maps_common_labels_to_target_classes():
     df = pd.DataFrame(
         {
             "traffic_class": ["normal", "VPN", "Tor", "direct", "openvpn", "tor"],
-            "application_category": ["browsing", "chat", "streaming", "email", "voip", "p2p"],
+            "application_category": [
+                "browsing",
+                "chat",
+                "streaming",
+                "email",
+                "voip",
+                "p2p",
+            ],
         }
     )
 

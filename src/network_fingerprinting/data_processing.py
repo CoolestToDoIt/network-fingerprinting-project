@@ -47,10 +47,14 @@ def normalize_labels(df: pd.DataFrame) -> pd.DataFrame:
         if "label" in out.columns:
             traffic_class = out["label"]
         else:
-            raise ValueError("Input DataFrame must include a traffic_class or label column.")
+            raise ValueError(
+                "Input DataFrame must include a traffic_class or label column."
+            )
     normalized_values = traffic_class.astype(str).str.strip().str.lower().map(mapping)
     if normalized_values.isna().any():
-        unknown = sorted(set(normalized_values[normalized_values.isna()].index.tolist()))
+        unknown = sorted(
+            set(normalized_values[normalized_values.isna()].index.tolist())
+        )
         raise ValueError(f"Unrecognized traffic labels found at indices: {unknown}")
     out["label"] = normalized_values.astype(int)
     return out
@@ -64,7 +68,9 @@ def canonicalize_application_categories(df: pd.DataFrame) -> pd.DataFrame:
         if "application" in out.columns:
             category_col = "application"
         else:
-            raise ValueError("Input DataFrame must include application_category or application.")
+            raise ValueError(
+                "Input DataFrame must include application_category or application."
+            )
 
     mapping = {
         "browsing": "browsing",
@@ -80,7 +86,9 @@ def canonicalize_application_categories(df: pd.DataFrame) -> pd.DataFrame:
         "voip": "voip",
         "p2p": "p2p",
     }
-    out["application_category"] = out[category_col].astype(str).str.strip().str.lower().map(mapping)
+    out["application_category"] = (
+        out[category_col].astype(str).str.strip().str.lower().map(mapping)
+    )
     out["application_category"] = out["application_category"].fillna("unknown")
     return out
 
@@ -98,7 +106,8 @@ def prepare_historical_dataset(raw_df: pd.DataFrame) -> pd.DataFrame:
 def select_model_features(df: pd.DataFrame, include_metadata: bool = True) -> list[str]:
     """Return columns intended for model training while excluding leakage-prone identifiers."""
     numeric_cols = [
-        c for c in df.columns
+        c
+        for c in df.columns
         if c not in LEAKAGE_COLUMNS and pd.api.types.is_numeric_dtype(df[c])
     ]
     if include_metadata:
@@ -113,12 +122,12 @@ def select_model_features(df: pd.DataFrame, include_metadata: bool = True) -> li
     return [c for c in numeric_cols if c not in {"label"}]
 
 
-def split_by_session(df: pd.DataFrame, test_session_ids: Iterable[str] | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
+def split_by_session(
+    df: pd.DataFrame, test_session_ids: Iterable[str] | None = None
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Simple session-wise split helper used in baseline experiments."""
-    if "capture_session" not in df.columns:
-        unique_ids = [f"session_{idx}" for idx in range(len(df))]
-        df = df.copy()
-        df["capture_session"] = unique_ids
+    if "capture_session" not in df.columns or df["capture_session"].isna().any():
+        raise ValueError("Real, non-null capture_session IDs are required.")
 
     if test_session_ids is None:
         sessions = sorted(df["capture_session"].unique())

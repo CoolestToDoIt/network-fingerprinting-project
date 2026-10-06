@@ -1,0 +1,954 @@
+[
+  {
+    "experiment": "loao",
+    "held_out_category": "browsing",
+    "train_categories": [
+      "chat",
+      "email",
+      "file_transfer",
+      "p2p",
+      "streaming",
+      "voip"
+    ],
+    "model": "logistic_regression",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.5362,
+    "macro_f1": 0.4299050987429444,
+    "macro_precision": 0.6424103318459715,
+    "macro_recall": 0.5362,
+    "confusion_matrix": [
+      [
+        261,
+        2239
+      ],
+      [
+        80,
+        2420
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 13074,
+    "n_test_samples": 5000,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 6880,
+      "0": 6194
+    },
+    "test_class_counts": {
+      "0": 2500,
+      "1": 2500
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "chat",
+    "train_categories": [
+      "browsing",
+      "email",
+      "file_transfer",
+      "p2p",
+      "streaming",
+      "voip"
+    ],
+    "model": "logistic_regression",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.5017114914425428,
+    "macro_f1": 0.41430609133132373,
+    "macro_precision": 0.43104761349200177,
+    "macro_recall": 0.45857161494081655,
+    "confusion_matrix": [
+      [
+        118,
+        769
+      ],
+      [
+        250,
+        908
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 16029,
+    "n_test_samples": 2045,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 8222,
+      "0": 7807
+    },
+    "test_class_counts": {
+      "1": 1158,
+      "0": 887
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "email",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "file_transfer",
+      "p2p",
+      "streaming",
+      "voip"
+    ],
+    "model": "logistic_regression",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.5835820895522388,
+    "macro_f1": 0.3685202639019793,
+    "macro_precision": 0.3108108108108108,
+    "macro_recall": 0.4525462962962963,
+    "confusion_matrix": [
+      [
+        0,
+        238
+      ],
+      [
+        41,
+        391
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 17404,
+    "n_test_samples": 670,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 8948,
+      "0": 8456
+    },
+    "test_class_counts": {
+      "1": 432,
+      "0": 238
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "file_transfer",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "email",
+      "p2p",
+      "streaming",
+      "voip"
+    ],
+    "model": "logistic_regression",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.5656934306569343,
+    "macro_f1": 0.5576268197050485,
+    "macro_precision": 0.586174911161135,
+    "macro_recall": 0.5991364112110382,
+    "confusion_matrix": [
+      [
+        590,
+        267
+      ],
+      [
+        923,
+        960
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 15334,
+    "n_test_samples": 2740,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "0": 7837,
+      "1": 7497
+    },
+    "test_class_counts": {
+      "1": 1883,
+      "0": 857
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "p2p",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "email",
+      "file_transfer",
+      "streaming",
+      "voip"
+    ],
+    "model": "logistic_regression",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.3683883011823273,
+    "macro_f1": 0.29064657468715005,
+    "macro_precision": 0.3027074403947675,
+    "macro_recall": 0.43786241076357973,
+    "confusion_matrix": [
+      [
+        30,
+        911
+      ],
+      [
+        104,
+        562
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 16467,
+    "n_test_samples": 1607,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 8714,
+      "0": 7753
+    },
+    "test_class_counts": {
+      "0": 941,
+      "1": 666
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "streaming",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "email",
+      "file_transfer",
+      "p2p",
+      "voip"
+    ],
+    "model": "logistic_regression",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.49405405405405406,
+    "macro_f1": 0.4937931486089543,
+    "macro_precision": 0.49500667343409277,
+    "macro_recall": 0.4950292397660818,
+    "confusion_matrix": [
+      [
+        239,
+        211
+      ],
+      [
+        257,
+        218
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 17149,
+    "n_test_samples": 925,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 8905,
+      "0": 8244
+    },
+    "test_class_counts": {
+      "1": 475,
+      "0": 450
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "voip",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "email",
+      "file_transfer",
+      "p2p",
+      "streaming"
+    ],
+    "model": "logistic_regression",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.29093768429329664,
+    "macro_f1": 0.22536927059540124,
+    "macro_precision": 0.17205301092769124,
+    "macro_recall": 0.3265666372462489,
+    "confusion_matrix": [
+      [
+        0,
+        2821
+      ],
+      [
+        786,
+        1480
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 12987,
+    "n_test_samples": 5087,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 7114,
+      "0": 5873
+    },
+    "test_class_counts": {
+      "0": 2821,
+      "1": 2266
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "browsing",
+    "train_categories": [
+      "chat",
+      "email",
+      "file_transfer",
+      "p2p",
+      "streaming",
+      "voip"
+    ],
+    "model": "random_forest",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.6204,
+    "macro_f1": 0.6156126243669355,
+    "macro_precision": 0.6267125986505993,
+    "macro_recall": 0.6204000000000001,
+    "confusion_matrix": [
+      [
+        1272,
+        1228
+      ],
+      [
+        670,
+        1830
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 13074,
+    "n_test_samples": 5000,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 6880,
+      "0": 6194
+    },
+    "test_class_counts": {
+      "0": 2500,
+      "1": 2500
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "chat",
+    "train_categories": [
+      "browsing",
+      "email",
+      "file_transfer",
+      "p2p",
+      "streaming",
+      "voip"
+    ],
+    "model": "random_forest",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.684596577017115,
+    "macro_f1": 0.6318605148998772,
+    "macro_precision": 0.7347646059100943,
+    "macro_recall": 0.6457811255654016,
+    "confusion_matrix": [
+      [
+        313,
+        574
+      ],
+      [
+        71,
+        1087
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 16029,
+    "n_test_samples": 2045,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 8222,
+      "0": 7807
+    },
+    "test_class_counts": {
+      "1": 1158,
+      "0": 887
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "email",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "file_transfer",
+      "p2p",
+      "streaming",
+      "voip"
+    ],
+    "model": "random_forest",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.6671641791044776,
+    "macro_f1": 0.5897797753549375,
+    "macro_precision": 0.6253670112214937,
+    "macro_recall": 0.5909488795518207,
+    "confusion_matrix": [
+      [
+        78,
+        160
+      ],
+      [
+        63,
+        369
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 17404,
+    "n_test_samples": 670,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 8948,
+      "0": 8456
+    },
+    "test_class_counts": {
+      "1": 432,
+      "0": 238
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "file_transfer",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "email",
+      "p2p",
+      "streaming",
+      "voip"
+    ],
+    "model": "random_forest",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.710948905109489,
+    "macro_f1": 0.6667360812925126,
+    "macro_precision": 0.6653966223521708,
+    "macro_recall": 0.6682606952459859,
+    "confusion_matrix": [
+      [
+        475,
+        382
+      ],
+      [
+        410,
+        1473
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 15334,
+    "n_test_samples": 2740,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "0": 7837,
+      "1": 7497
+    },
+    "test_class_counts": {
+      "1": 1883,
+      "0": 857
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "p2p",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "email",
+      "file_transfer",
+      "streaming",
+      "voip"
+    ],
+    "model": "random_forest",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.4368388301182327,
+    "macro_f1": 0.4049524051119754,
+    "macro_precision": 0.48510577117366366,
+    "macro_recall": 0.4908258417822711,
+    "confusion_matrix": [
+      [
+        165,
+        776
+      ],
+      [
+        129,
+        537
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 16467,
+    "n_test_samples": 1607,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 8714,
+      "0": 7753
+    },
+    "test_class_counts": {
+      "0": 941,
+      "1": 666
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "streaming",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "email",
+      "file_transfer",
+      "p2p",
+      "voip"
+    ],
+    "model": "random_forest",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.4572972972972973,
+    "macro_f1": 0.4428406189406593,
+    "macro_precision": 0.4567414174972314,
+    "macro_recall": 0.4619883040935673,
+    "confusion_matrix": [
+      [
+        286,
+        164
+      ],
+      [
+        338,
+        137
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 17149,
+    "n_test_samples": 925,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 8905,
+      "0": 8244
+    },
+    "test_class_counts": {
+      "1": 475,
+      "0": 450
+    }
+  },
+  {
+    "experiment": "loao",
+    "held_out_category": "voip",
+    "train_categories": [
+      "browsing",
+      "chat",
+      "email",
+      "file_transfer",
+      "p2p",
+      "streaming"
+    ],
+    "model": "random_forest",
+    "seed": 42,
+    "bootstrap_training": false,
+    "accuracy": 0.560055042264596,
+    "macro_f1": 0.38661787068310066,
+    "macro_precision": 0.5896648839129017,
+    "macro_recall": 0.5080883726358202,
+    "confusion_matrix": [
+      [
+        2777,
+        44
+      ],
+      [
+        2194,
+        72
+      ]
+    ],
+    "confusion_matrix_labels": [
+      0,
+      1
+    ],
+    "n_train_samples": 12987,
+    "n_test_samples": 5087,
+    "feature_columns": [
+      "duration",
+      "total_fiat",
+      "total_biat",
+      "min_fiat",
+      "min_biat",
+      "max_fiat",
+      "max_biat",
+      "mean_fiat",
+      "mean_biat",
+      "flowPktsPerSecond",
+      "flowBytesPerSecond",
+      "min_flowiat",
+      "max_flowiat",
+      "mean_flowiat",
+      "std_flowiat",
+      "min_active",
+      "mean_active",
+      "max_active",
+      "std_active",
+      "min_idle",
+      "mean_idle",
+      "max_idle",
+      "std_idle"
+    ],
+    "train_class_counts": {
+      "1": 7114,
+      "0": 5873
+    },
+    "test_class_counts": {
+      "0": 2821,
+      "1": 2266
+    }
+  }
+]

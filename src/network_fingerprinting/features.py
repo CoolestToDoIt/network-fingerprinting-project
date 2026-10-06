@@ -6,7 +6,15 @@ import pandas as pd
 def build_flow_features(df: pd.DataFrame) -> pd.DataFrame:
     """Construct a compact flow feature matrix with common leakage fields removed."""
     out = df.copy()
-    leakage = {"src_ip", "dst_ip", "source_ip", "destination_ip", "src_port", "dst_port", "application_name"}
+    leakage = {
+        "src_ip",
+        "dst_ip",
+        "source_ip",
+        "destination_ip",
+        "src_port",
+        "dst_port",
+        "application_name",
+    }
     out = out.drop(columns=[c for c in leakage if c in out.columns], errors="ignore")
 
     feature_aliases = {
@@ -27,16 +35,24 @@ def build_flow_features(df: pd.DataFrame) -> pd.DataFrame:
         out["flow_duration"] = pd.to_numeric(out["duration"], errors="coerce")
 
     if "total_fwd_bytes" not in out.columns and "flowBytesPerSecond" in out.columns:
-        out["total_fwd_bytes"] = pd.to_numeric(out["flowBytesPerSecond"], errors="coerce") * out["flow_duration"].replace(0, 1)
+        out["total_fwd_bytes"] = pd.to_numeric(
+            out["flowBytesPerSecond"], errors="coerce"
+        ) * out["flow_duration"].replace(0, 1)
 
     if "total_bwd_bytes" not in out.columns and "flowBytesPerSecond" in out.columns:
-        out["total_bwd_bytes"] = pd.to_numeric(out["flowBytesPerSecond"], errors="coerce") * out["flow_duration"].replace(0, 1)
+        out["total_bwd_bytes"] = pd.to_numeric(
+            out["flowBytesPerSecond"], errors="coerce"
+        ) * out["flow_duration"].replace(0, 1)
 
     if "total_fwd_bytes" not in out.columns and "total_fwd_packets" in out.columns:
-        out["total_fwd_bytes"] = pd.to_numeric(out["total_fwd_packets"], errors="coerce")
+        out["total_fwd_bytes"] = pd.to_numeric(
+            out["total_fwd_packets"], errors="coerce"
+        )
 
     if "total_bwd_bytes" not in out.columns and "total_bwd_packets" in out.columns:
-        out["total_bwd_bytes"] = pd.to_numeric(out["total_bwd_packets"], errors="coerce")
+        out["total_bwd_bytes"] = pd.to_numeric(
+            out["total_bwd_packets"], errors="coerce"
+        )
 
     required = [
         "flow_duration",
@@ -49,9 +65,19 @@ def build_flow_features(df: pd.DataFrame) -> pd.DataFrame:
     if missing:
         raise ValueError(f"Missing required flow features: {missing}")
 
-    out["bytes_per_second"] = out["total_fwd_bytes"] / out["flow_duration"].replace(0, 1)
-    out["packets_per_second"] = (out["total_fwd_packets"] + out["total_bwd_packets"]) / out["flow_duration"].replace(0, 1)
-    out["forward_byte_ratio"] = out["total_fwd_bytes"] / (out["total_fwd_bytes"] + out["total_bwd_bytes"]).replace(0, 1)
-    out["backward_byte_ratio"] = out["total_bwd_bytes"] / (out["total_fwd_bytes"] + out["total_bwd_bytes"]).replace(0, 1)
-    out["packet_ratio"] = out["total_fwd_packets"] / (out["total_fwd_packets"] + out["total_bwd_packets"]).replace(0, 1)
+    out["bytes_per_second"] = out["total_fwd_bytes"] / out["flow_duration"].replace(
+        0, 1
+    )
+    out["packets_per_second"] = (
+        out["total_fwd_packets"] + out["total_bwd_packets"]
+    ) / out["flow_duration"].replace(0, 1)
+    out["forward_byte_ratio"] = out["total_fwd_bytes"] / (
+        out["total_fwd_bytes"] + out["total_bwd_bytes"]
+    ).replace(0, 1)
+    out["backward_byte_ratio"] = out["total_bwd_bytes"] / (
+        out["total_fwd_bytes"] + out["total_bwd_bytes"]
+    ).replace(0, 1)
+    out["packet_ratio"] = out["total_fwd_packets"] / (
+        out["total_fwd_packets"] + out["total_bwd_packets"]
+    ).replace(0, 1)
     return out

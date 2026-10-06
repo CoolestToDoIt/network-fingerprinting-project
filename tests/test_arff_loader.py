@@ -7,7 +7,7 @@ from network_fingerprinting.data_loaders import load_vpn_dataset
 
 
 def test_load_vpn_dataset_loads_arff_zip_and_maps_binary_class(tmp_path: Path):
-    arff_text = '''@RELATION test-vpn
+    arff_text = """@RELATION test-vpn
 
 @ATTRIBUTE duration NUMERIC
 @ATTRIBUTE total_fiat NUMERIC
@@ -18,7 +18,7 @@ def test_load_vpn_dataset_loads_arff_zip_and_maps_binary_class(tmp_path: Path):
 1,10,5,Non-VPN
 2,20,6,VPN
 3,30,7,Non-VPN
-'''
+"""
 
     zip_path = tmp_path / "sample.zip"
     with zipfile.ZipFile(zip_path, "w") as zf:
