@@ -113,5 +113,69 @@ def main():
     pd.DataFrame(error_rows).to_csv(root / "class_errors.csv", index=False)
 
 
+def plot_accuracy_labels():
+    """Show exact mean percentages on horizontal bars for quick report reading."""
+    root = Path("reports/vpn_study")
+    summary = pd.read_csv(root / "summary.csv")
+    categories = [
+        "baseline",
+        "browsing",
+        "chat",
+        "email",
+        "file_transfer",
+        "p2p",
+        "streaming",
+        "voip",
+    ]
+    labels = [
+        "Random baseline",
+        "Browsing",
+        "Chat",
+        "Email",
+        "File transfer",
+        "P2P",
+        "Streaming",
+        "VoIP",
+    ]
+    figure, axes = plt.subplots(
+        1, 2, figsize=(12, 6), sharey=True, layout="constrained"
+    )
+    for axis, model, title, color in zip(
+        axes,
+        ["logistic_regression", "random_forest"],
+        ["Logistic regression", "Random Forest"],
+        ["#2878b5", "#e68122"],
+    ):
+        results = (
+            summary[summary.model == model]
+            .set_index("held_out_category")
+            .loc[categories]
+        )
+        values = 100 * results["accuracy_mean"].to_numpy()
+        bars = axis.barh(np.arange(len(categories)), values, color=color, height=0.65)
+        axis.bar_label(
+            bars, labels=[f"{value:.1f}%" for value in values], padding=5, fontsize=11
+        )
+        axis.set_xlim(0, 105)
+        axis.set_xticks([0, 25, 50, 75, 100], ["0%", "25%", "50%", "75%", "100%"])
+        axis.set_yticks(np.arange(len(categories)), labels)
+        axis.set_xlabel("Correctly classified test flows")
+        axis.set_title(title, fontsize=14)
+        axis.grid(axis="x", alpha=0.2)
+        axis.set_axisbelow(True)
+    axes[0].invert_yaxis()
+    figure.suptitle(
+        "Accuracy falls when the application category is unseen", fontsize=16
+    )
+    figure.supxlabel(
+        "Five-run means. Baseline uses random splits; held-out categories use training bootstraps.\nDifferent test populations: comparisons are descriptive, not paired estimates.",
+        fontsize=10,
+    )
+    figure.savefig(root / "accuracy_overview.png", dpi=180)
+    figure.savefig(root / "accuracy_overview.pdf")
+    plt.close(figure)
+
+
 if __name__ == "__main__":
     main()
+    plot_accuracy_labels()

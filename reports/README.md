@@ -69,3 +69,9 @@ Regenerate readable tables after changing results:
 ```bash
 .venv/bin/python render_results.py
 ```
+
+## Graphics gallery
+
+Open [the graphics gallery](vpn_study/graphics.md) to see the labeled accuracy
+chart, accuracy/macro-F1 comparison, and confusion matrices together. PNGs are
+suitable for slides; PDF versions are available for reports.
