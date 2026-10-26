@@ -1,0 +1,9 @@
+{
+  "seeds": [42, 43, 44, 45, 46],
+  "models": ["logistic_regression", "random_forest"],
+  "vpn_timeout_seconds": 15,
+  "test_fraction": 0.25,
+  "random_forest_trees": 200,
+  "random_forest_min_samples_leaf": 2,
+  "description": "Historical validation only; matched test flows and training sizes, duplicate-vector groups, Tor baselines, and duration ablation."
+}

@@ -1,0 +1,30 @@
+# Captured environment: Python 3.12.4. Install this checkout, not a historical Git revision.
+black==26.10.0
+click==8.5.0
+cloudpickle==3.1.2
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.66.1
+iniconfig==2.3.0
+joblib==1.6.0
+kiwisolver==1.5.1
+matplotlib==3.11.2
+mypy_extensions==1.1.0
+narwhals==2.26.0
+-e .
+numpy==2.5.3
+packaging==26.3
+pandas==3.0.6
+pathspec==1.1.1
+pillow==12.3.0
+platformdirs==4.12.3
+pluggy==1.6.0
+Pygments==2.21.0
+pyparsing==3.3.3
+pytest==9.1.1
+python-dateutil==2.9.0.post0
+pytokens==0.4.1
+scikit-learn==1.9.1
+scipy==1.18.1
+six==1.17.0
+threadpoolctl==3.7.0

@@ -40,3 +40,10 @@ of performance drops. They do not establish session or temporal generalization.
 
 See [the findings](findings.md) and [readable numbers](summary_readable.md).
 Regenerate these graphics with `.venv/bin/python plot_study.py`.
+
+## New: stricter comparison and Tor baselines (October 26)
+
+The [current results gallery](../completion_study/findings.md) adds same-test,
+equal-training-size category comparisons, paired generalization drops, and
+repeated Tor baselines. Those figures complement the original plots above;
+they use a different, explicitly documented evaluation design.

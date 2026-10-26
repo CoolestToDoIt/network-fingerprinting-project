@@ -11,6 +11,7 @@ import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import (
     accuracy_score,
+    classification_report,
     confusion_matrix,
     f1_score,
     precision_score,
@@ -22,7 +23,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 
-from .data_processing import LEAKAGE_COLUMNS, normalize_labels
+from .data_processing import LEAKAGE_COLUMNS, normalize_labels, is_identifier_column
 
 METADATA = {
     "traffic_class",
@@ -43,11 +44,69 @@ def _prepare_model_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
         c
         for c in processed
         if c not in LEAKAGE_COLUMNS | METADATA
+        and not is_identifier_column(c)
         and pd.api.types.is_numeric_dtype(processed[c])
     ]
     if not columns:
         raise ValueError("No numeric flow features available.")
     return processed[columns].replace([np.inf, -np.inf], np.nan), processed["label"]
+
+
+def make_model(model_name: str = "logistic_regression", seed: int = 42) -> Pipeline:
+    """Build a model with training-only imputation and scaling."""
+    if model_name not in {"logistic_regression", "random_forest"}:
+        raise ValueError(f"Unknown model: {model_name}")
+    return Pipeline(
+        [
+            ("imputer", SimpleImputer(strategy="median", keep_empty_features=True)),
+            ("scaler", StandardScaler()),
+            (
+                "classifier",
+                (
+                    LogisticRegression(max_iter=3000, random_state=seed)
+                    if model_name == "logistic_regression"
+                    else RandomForestClassifier(
+                        n_estimators=200,
+                        min_samples_leaf=2,
+                        random_state=seed,
+                        n_jobs=-1,
+                    )
+                ),
+            ),
+        ]
+    )
+
+
+def prediction_metrics(y_test, predictions, labels: list[int]) -> dict:
+    """Return JSON-safe scores; confusion matrix rows are true labels."""
+    report = classification_report(
+        y_test, predictions, labels=labels, output_dict=True, zero_division=0
+    )
+    return {
+        "accuracy": float(accuracy_score(y_test, predictions)),
+        "macro_f1": float(
+            f1_score(
+                y_test, predictions, labels=labels, average="macro", zero_division=0
+            )
+        ),
+        "macro_precision": float(
+            precision_score(
+                y_test, predictions, labels=labels, average="macro", zero_division=0
+            )
+        ),
+        "macro_recall": float(
+            recall_score(
+                y_test, predictions, labels=labels, average="macro", zero_division=0
+            )
+        ),
+        "confusion_matrix": confusion_matrix(
+            y_test, predictions, labels=labels
+        ).tolist(),
+        "confusion_matrix_labels": labels,
+        "per_class": {str(label): report[str(label)] for label in labels},
+        "predictions": np.asarray(predictions).tolist(),
+        "true_labels": np.asarray(y_test).tolist(),
+    }
 
 
 def _evaluate(
@@ -73,52 +132,28 @@ def _evaluate(
         raise ValueError("Training split must contain at least two classes.")
     if set(y_test) - set(y_train):
         raise ValueError("Test split contains classes absent from training.")
-    model = Pipeline(
-        [
-            ("imputer", SimpleImputer(strategy="median", keep_empty_features=True)),
-            ("scaler", StandardScaler()),
-            (
-                "classifier",
-                (
-                    LogisticRegression(max_iter=3000, random_state=seed)
-                    if model_name == "logistic_regression"
-                    else RandomForestClassifier(
-                        n_estimators=200,
-                        min_samples_leaf=2,
-                        random_state=seed,
-                        n_jobs=-1,
-                    )
-                ),
-            ),
-        ]
-    )
+    if set(X_train.columns) != set(X_test.columns):
+        raise ValueError(
+            "Training and test numeric feature columns must match exactly."
+        )
+    model = make_model(model_name, seed)
     model.fit(X_train, y_train)
     predictions = model.predict(X_test[X_train.columns])
     labels = sorted(set(y_train) | set(y_test))
+    majority_label = int(y_train.value_counts().idxmax())
+    majority = prediction_metrics(
+        y_test, np.repeat(majority_label, len(y_test)), labels
+    )
     return {
         "model": model_name,
         "seed": seed,
         "bootstrap_training": bootstrap_training,
-        "accuracy": float(accuracy_score(y_test, predictions)),
-        "macro_f1": float(
-            f1_score(
-                y_test, predictions, labels=labels, average="macro", zero_division=0
-            )
-        ),
-        "macro_precision": float(
-            precision_score(
-                y_test, predictions, labels=labels, average="macro", zero_division=0
-            )
-        ),
-        "macro_recall": float(
-            recall_score(
-                y_test, predictions, labels=labels, average="macro", zero_division=0
-            )
-        ),
-        "confusion_matrix": confusion_matrix(
-            y_test, predictions, labels=labels
-        ).tolist(),
-        "confusion_matrix_labels": labels,
+        **prediction_metrics(y_test, predictions, labels),
+        "majority_baseline": {
+            "training_majority_label": majority_label,
+            "accuracy": majority["accuracy"],
+            "macro_f1": majority["macro_f1"],
+        },
         "n_train_samples": len(train),
         "n_test_samples": len(test),
         "feature_columns": X_train.columns.tolist(),
@@ -126,8 +161,6 @@ def _evaluate(
             str(k): int(v) for k, v in y_train.value_counts().items()
         },
         "test_class_counts": {str(k): int(v) for k, v in y_test.value_counts().items()},
-        "predictions": predictions.tolist(),
-        "true_labels": y_test.tolist(),
     }
 
 

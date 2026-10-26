@@ -1,5 +1,10 @@
 # PLAN.md — VPN/Tor Traffic Generalization Project
 
+> Current evidence and remaining work are tracked in [PROJECT_STATUS.md](PROJECT_STATUS.md)
+> (October 26, 2026). The checklist below records the original plan and is not a
+> claim that modern traffic, session provenance, or a pooled three-class model exists.
+> Use the status ledger and latest report for measured completion.
+
 ## 1. Project Goal
 
 Build a reproducible machine-learning system that classifies network traffic as **Normal**, **VPN**, or **Tor** using flow-level metadata. The main research focus is **generalization**, not only benchmark accuracy.

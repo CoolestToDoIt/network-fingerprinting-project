@@ -25,14 +25,63 @@ LEAKAGE_COLUMNS = {
 }
 
 
+METADATA_COLUMNS = {
+    "traffic_class",
+    "application_category",
+    "application",
+    "capture_session",
+    "dataset_source",
+    "capture_year",
+    "capture_id",
+    "sample_id",
+    "pair_id",
+    "time_period",
+    "collection_day",
+    "class",
+    "class1",
+    "label",
+    "timestamp",
+    "start_utc",
+    "end_utc",
+    "session_id",
+    "dataset",
+    "flow_id",
+    "protocol_label",
+}
+
+
+def is_identifier_column(column: str) -> bool:
+    """Recognize common endpoint, target and provenance fields despite CSV spelling."""
+    import re
+
+    name = re.sub(r"[^a-z0-9]+", "_", str(column).strip().lower()).strip("_")
+    return name in LEAKAGE_COLUMNS | METADATA_COLUMNS | {
+        "destination_port",
+        "source_port",
+        "source_mac",
+        "destination_mac",
+        "src_mac",
+        "dst_mac",
+        "ip",
+        "mac",
+        "capture_file",
+        "file_name",
+    }
+
+
 def normalize_labels(df: pd.DataFrame) -> pd.DataFrame:
     """Map heterogeneous traffic labels into the canonical 0/1/2 encoding."""
     out = df.copy()
     mapping = {
+        "0": 0,
+        "1": 1,
+        "2": 2,
         "normal": 0,
         "direct": 0,
         "benign": 0,
         "non_tor": 0,
+        "nontor": 0,
+        "non-tor": 0,
         "non-vpn": 0,
         "non_vpn": 0,
         "nonvpn": 0,
@@ -108,7 +157,7 @@ def select_model_features(df: pd.DataFrame, include_metadata: bool = True) -> li
     numeric_cols = [
         c
         for c in df.columns
-        if c not in LEAKAGE_COLUMNS and pd.api.types.is_numeric_dtype(df[c])
+        if not is_identifier_column(c) and pd.api.types.is_numeric_dtype(df[c])
     ]
     if include_metadata:
         metadata_cols = [

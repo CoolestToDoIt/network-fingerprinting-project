@@ -1,5 +1,8 @@
 # network-fingerprinting-project
 
+**Latest:** [project status](PROJECT_STATUS.md), [current results](reports/completion_study/findings.md),
+and [research report draft](reports/final_report_draft.md).
+
 This repository contains the modeling and evaluation pipeline for the VPN/Tor traffic classification project.
 
 ## Data storage
@@ -42,6 +45,7 @@ The project code expects data to be loaded from this local directory rather than
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+pip install -e .
 pip install -r requirements.txt
 python -m pytest -q
 python run_baseline.py data/raw/your_dataset.csv --output data/processed/baseline_metrics.json
@@ -104,3 +108,52 @@ See `reports/vpn_study/findings.md`, `reports/dataset_compatibility.md`, and
 
 For a plain-language guide to every result format and the study terminology,
 start with [the report index](reports/README.md).
+
+
+## Reproduce the current historical study
+
+Run from the repository root with the three raw files documented in
+[data/README.md](data/README.md). Only the VPN archive and binary Tor CSV are
+required for the experiment runner; the category CSV supports the overlap audit.
+
+```bash
+.venv/bin/python run_all.py
+```
+
+This runs tests, exports historical tables, executes 198 stricter evaluations,
+generates readable tables and PNG/PDF figures, verifies saved metrics and split
+invariants, and saves four historical-only inference models. Models and prediction
+checkpoints are ignored local outputs; compact reports remain in `reports/`.
+Runs resume from checkpoints only when the input/configuration/environment/source
+signature matches. Model fitting can take several minutes. `--skip-models` skips
+only the final full-data artifact fits, not the study's evaluation models.
+
+The stricter study compares category-seen and category-unseen training on exactly
+the same test flows with equal training sizes. It also checks feature-vector group
+splits, repeated Tor baselines, and duration-column ablation. Exact feature groups
+are not capture sessions. The [latest figures](reports/completion_study/findings.md)
+include these distinctions in their captions.
+
+For separate steps:
+
+```bash
+.venv/bin/python prepare_datasets.py
+.venv/bin/python run_completion_study.py
+.venv/bin/python summarize_completion.py
+.venv/bin/python validate_results.py
+.venv/bin/python freeze_models.py
+```
+
+`config/final_study.json` records seeds, timeout and model settings. The code rejects
+unsupported tree/leaf settings rather than recording configuration it does not use.
+`reports/model_cards/` documents model scope, labels, features and artifact hashes.
+`requirements-reproduced.txt` captures the installed environment; exact cross-platform
+binary reproducibility is not promised.
+
+## Temporal and combined-shift evaluation
+
+The implemented transfer CLI requires compatible real modern data and a verified
+feature contract. Neither exists yet. The pending contract intentionally refuses
+scoring; see [the readiness guide](reports/transfer_readiness.md). Synthetic tests
+validate the code and do not count as temporal experiments. Original three-class
+and Tor category-generalization objectives remain unresolved.

@@ -1,0 +1,10 @@
+{
+  "task": "vpn",
+  "compatibility_verified": false,
+  "historical_extractor": {"version": "", "source": ""},
+  "modern_extractor": {"version": "", "source": ""},
+  "flow_settings": {"timeout_seconds": 15, "direction_rule": "", "active_idle_rule": ""},
+  "verification_notes": {"fixture_report_path": "", "fixture_report_sha256": ""},
+  "features": [],
+  "instructions": "Keep compatibility_verified false until source definitions, units, settings, and a manually checked packet fixture have been documented. Do not invent missing directional counts or infer units from names."
+}

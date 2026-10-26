@@ -1,0 +1,14 @@
+{
+  "checkpoint_reproduction_identical": true,
+  "metrics_sha256": "ebf9731815a6f6ba57595063b364429f68d17a8d617f54d61be757fd098a77bc",
+  "recorded_source_hashes_match": true,
+  "model_artifacts_verified": [
+    "vpn_logistic_regression",
+    "vpn_random_forest",
+    "tor_logistic_regression",
+    "tor_random_forest"
+  ],
+  "reproduction_and_artifact_check_seconds": 1.97,
+  "pytest_tests_passed": 38,
+  "scope": "Same-environment cached reproduction and local artifact loading; independent-machine reproduction remains pending."
+}

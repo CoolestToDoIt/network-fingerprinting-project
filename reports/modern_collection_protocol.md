@@ -1,5 +1,9 @@
 # Modern traffic collection protocol and project deadlines
 
+**October 26 update:** the original October 19 cutoff passed without modern data.
+Use [the revised transfer schedule](transfer_readiness.md) for current dates:
+pilot October 29, feasibility freeze November 2, optional modern scoring November 9.
+
 Target completion: December 5, 2026. Core deliverable: reproducible VPN application
 category generalization, with Tor as a separate secondary study.
 

@@ -1,5 +1,10 @@
 # Start here: project results
 
+**Latest (October 26):** [historical validation study](completion_study/findings.md),
+[report draft](final_report_draft.md), [completion ledger](../PROJECT_STATUS.md), and
+[transfer readiness](transfer_readiness.md). The October 5 results below remain as
+earlier analyses with different evaluation designs.
+
 Read [the current VPN findings](vpn_study/findings.md) first. They describe the
 expanded two-model study and its limitations. The earlier progress update includes
 an initial experiment followed by a dated follow-up; use the expanded study for
@@ -75,3 +80,11 @@ Regenerate readable tables after changing results:
 Open [the graphics gallery](vpn_study/graphics.md) to see the labeled accuracy
 chart, accuracy/macro-F1 comparison, and confusion matrices together. PNGs are
 suitable for slides; PDF versions are available for reports.
+
+## October 26 additions
+
+- [Current study](completion_study/README.md): 198 evaluations, paired category comparisons,
+  feature-group baselines, Tor baselines, and duration ablation.
+- [Report draft](final_report_draft.md): connected methods, results, discussion and limits.
+- [Model cards](model_cards/README.md): four frozen historical inference artifacts.
+- [Remaining work](../PROJECT_STATUS.md): explicit completion ledger and calendar.

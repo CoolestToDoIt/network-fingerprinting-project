@@ -1,0 +1,47 @@
+{
+  "task": "vpn",
+  "model": "logistic_regression",
+  "seed": 42,
+  "n_training_flows": 18074,
+  "dataset_sha256": "248421563cd0a34677bb87883a509006e2bacd54ede65d0fc13ece64730e3361",
+  "model_sha256": "33022a226ef2b88ed547c99ad56824a1a8a4e2a7c29857f2843e83be7639b68f",
+  "feature_columns": [
+    "duration",
+    "total_fiat",
+    "total_biat",
+    "min_fiat",
+    "min_biat",
+    "max_fiat",
+    "max_biat",
+    "mean_fiat",
+    "mean_biat",
+    "flowPktsPerSecond",
+    "flowBytesPerSecond",
+    "min_flowiat",
+    "max_flowiat",
+    "mean_flowiat",
+    "std_flowiat",
+    "min_active",
+    "mean_active",
+    "max_active",
+    "std_active",
+    "min_idle",
+    "mean_idle",
+    "max_idle",
+    "std_idle"
+  ],
+  "class_labels": {
+    "0": "Non-VPN",
+    "1": "VPN"
+  },
+  "python": "3.12.4",
+  "scikit_learn": "1.9.1",
+  "intended_use": "Research inference within the same verified historical schema.",
+  "modern_feature_compatibility_verified": false,
+  "limitations": [
+    "Not a three-class classifier.",
+    "No independent temporal or session validation.",
+    "Full-data fitting is for a frozen inference artifact, not evaluation.",
+    "Do not load untrusted joblib files."
+  ]
+}

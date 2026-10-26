@@ -1,0 +1,7 @@
+{
+  "evaluations_checked": 198,
+  "paired_comparisons_checked": 70,
+  "predictions_checked": 198,
+  "status": "passed",
+  "limits": "Checks arithmetic and recorded split invariants; cannot establish real-session independence."
+}
